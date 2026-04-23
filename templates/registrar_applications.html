@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Registrar - Applications</h1>
+<p><a href="{{ url_for('registrar_semester') }}">Manage Semester Phase</a></p>
+<table>
+  <tr><th>ID</th><th>Email</th><th>Role</th><th>Status</th><th>Action</th></tr>
+  {% for a in applications %}
+  <tr>
+    <td>{{ a['application_id'] }}</td>
+    <td>{{ a['applicant_email'] }}</td>
+    <td>{{ a['role'] }}</td>
+    <td>{{ a['status'] }}</td>
+    <td>
+      {% if a['status'] == 'pending' %}
+      <form method="post" style="display:inline;">
+        <input type="hidden" name="application_id" value="{{ a['application_id'] }}">
+        <button name="action" value="approve">Approve</button>
+      </form>
+      <form method="post" style="display:inline;">
+        <input type="hidden" name="application_id" value="{{ a['application_id'] }}">
+        <input type="text" name="reason" placeholder="Reason">
+        <button name="action" value="reject">Reject</button>
+      </form>
+      {% else %}Completed{% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

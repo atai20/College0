@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+college0.db
+report_extracted.txt

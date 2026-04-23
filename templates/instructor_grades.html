@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Instructor - Submit Grades</h1>
+<p>Current semester phase: <strong>{{ sem['phase'] }}</strong></p>
+<table>
+  <tr><th>Enrollment</th><th>Student</th><th>Course</th><th>Grade</th><th>Action</th></tr>
+  {% for e in enrollments %}
+  <tr>
+    <td>{{ e['enrollment_id'] }}</td><td>{{ e['student_email'] }}</td><td>{{ e['course_name'] }}</td>
+    <td>
+      <form method="post">
+        <input type="hidden" name="enrollment_id" value="{{ e['enrollment_id'] }}">
+        <select name="letter_grade">
+          <option>A</option><option>B</option><option>C</option><option>D</option><option>F</option>
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+    </td>
+    <td></td>
+  </tr>
+  {% else %}<tr><td colspan="5">No active enrollments.</td></tr>{% endfor %}
+</table>
+{% endblock %}

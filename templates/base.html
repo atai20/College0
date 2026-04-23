@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>College0</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <nav>
+    <a href="{{ url_for('public_dashboard') }}">Public</a>
+    <a href="{{ url_for('ai_assistant') }}">AI Assistant</a>
+    {% if user %}
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('complaints') }}">Complaints</a>
+      <a href="{{ url_for('logout') }}">Logout ({{ user['role'] }})</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('apply', role='student') }}">Apply Student</a>
+      <a href="{{ url_for('apply', role='instructor') }}">Apply Instructor</a>
+    {% endif %}
+  </nav>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, msg in messages %}
+        <p class="{{ category }}">{{ msg }}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</body>
+</html>

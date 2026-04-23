@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Registrar - Semester Phase</h1>
+<div class="card" style="max-width:520px;">
+  <p>Semester: <strong>{{ sem['name'] }}</strong></p>
+  <p>Current phase: <strong>{{ sem['phase'] }}</strong></p>
+  <form method="post">
+    <button type="submit">Advance Phase</button>
+  </form>
+</div>
+{% endblock %}

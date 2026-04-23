@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Student - Register Courses</h1>
+<p>Current semester phase: <strong>{{ sem['phase'] }}</strong></p>
+<div class="card">
+  <h3>Available Sections</h3>
+  <table>
+    <tr><th>Section</th><th>Course</th><th>Capacity</th><th>Enrolled</th><th>Action</th></tr>
+    {% for s in sections %}
+    <tr>
+      <td>{{ s['section_id'] }}</td><td>{{ s['course_name'] }}</td><td>{{ s['capacity'] }}</td><td>{{ s['enrolled_count'] }}</td>
+      <td>
+        <form method="post">
+          <input type="hidden" name="section_id" value="{{ s['section_id'] }}">
+          <button type="submit">Register</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+<div class="card">
+  <h3>My Enrollments</h3>
+  <table>
+    <tr><th>ID</th><th>Course</th><th>Status</th><th>Waitlist Pos</th></tr>
+    {% for e in enrollments %}
+    <tr><td>{{ e['enrollment_id'] }}</td><td>{{ e['course_name'] }}</td><td>{{ e['status'] }}</td><td>{{ e['waitlist_position'] }}</td></tr>
+    {% else %}<tr><td colspan="4">No enrollments yet.</td></tr>{% endfor %}
+  </table>
+</div>
+<p><a href="{{ url_for('student_review') }}">Submit Review</a></p>
+{% endblock %}

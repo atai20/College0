@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Instructor - Waitlist Management</h1>
+<table>
+  <tr><th>Enrollment</th><th>Student</th><th>Course</th><th>Position</th><th>Action</th></tr>
+  {% for w in waitlisted %}
+  <tr>
+    <td>{{ w['enrollment_id'] }}</td><td>{{ w['student_email'] }}</td><td>{{ w['course_name'] }}</td><td>{{ w['waitlist_position'] }}</td>
+    <td>
+      <form method="post">
+        <input type="hidden" name="enrollment_id" value="{{ w['enrollment_id'] }}">
+        <button type="submit">Admit</button>
+      </form>
+    </td>
+  </tr>
+  {% else %}<tr><td colspan="5">No waitlisted students.</td></tr>{% endfor %}
+</table>
+<p><a href="{{ url_for('instructor_grades') }}">Submit Grades</a></p>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>AI Assistant</h1>
+<p>Role scope: <strong>{{ role }}</strong></p>
+<form method="post" class="card" style="max-width:760px;">
+  <label>Ask a question</label><br>
+  <textarea name="question" rows="3" cols="80" required></textarea><br><br>
+  <button type="submit">Ask</button>
+</form>
+{% if answer %}
+<div class="card">
+  <h3>Answer</h3>
+  {% if warning %}<p class="info">Warning: fallback answer (low grounding confidence).</p>{% endif %}
+  <p>{{ answer }}</p>
+  <p>Sources: {{ sources|join(', ') if sources else 'none' }}</p>
+</div>
+{% endif %}
+{% endblock %}

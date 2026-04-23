@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>College0 Public Dashboard</h1>
+<div class="row">
+  <div class="card" style="flex:1; min-width:300px;">
+    <h3>Top Rated Classes</h3>
+    <ul>
+      {% for c in top_classes %}
+      <li>{{ c['name'] }} ({{ '%.2f'|format(c['avg_stars']) }})</li>
+      {% else %}<li>No data yet</li>{% endfor %}
+    </ul>
+  </div>
+  <div class="card" style="flex:1; min-width:300px;">
+    <h3>Top GPA Students</h3>
+    <ul>
+      {% for s in top_students %}
+      <li>{{ s['email'] }} ({{ s['overall_gpa'] }})</li>
+      {% else %}<li>No data yet</li>{% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

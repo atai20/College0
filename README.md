@@ -1,25 +1,45 @@
-# College0 - CSC322 Phase II Design Report
+# College0 - Phase II Application + Design Report
 
-This repository contains the complete Phase II submission package for the College0 Software Engineering assignment.
+This repository contains the Phase II Design Report and a runnable project application that implements the main workflows described in the report.
 
-## Main deliverable
+## Contents
 
-- `College0_Phase_II_Final.pdf` - finalized Phase II Design Report
+- `College0_Phase_II_Final.pdf` - finalized Phase II design report
+- `app.py` - Flask application (role-based college management system)
+- `schema.sql` - SQLite schema aligned with report entities
+- `templates/` - major GUI screens by role
+- `static/styles.css` - basic UI styling
 
-## Requirement coverage
+## Run locally
 
-The PDF includes all required Phase II sections:
+1. Create and activate a virtual environment.
+2. Install dependencies:
+   - `pip install -r requirements.txt`
+3. Start the app:
+   - `python app.py`
+4. Open:
+   - `http://127.0.0.1:5000/`
 
-1. Introduction with overall collaboration class diagram
-2. All use cases with normal and exceptional scenarios, plus Petri nets for selected use cases
-3. Full entity-relationship (E-R) diagram with keys and attributes
-4. Detailed method-level pseudo-code (inputs, outputs, and logic)
-5. Major system screens and one prototype flow
-6. Group meeting memos and teamwork concerns
-7. Team repository address
+## Demo accounts
 
-## Course context
+- Registrar: `registrar@college0.edu` / `registrar123`
+- Student: `student@college0.edu` / `student123`
+- Instructor: `instructor@college0.edu` / `instructor123`
 
-- Course: CSC322 Software Engineering
-- Project: College0
-- Report type: Phase II - Design Report
+## Implemented use-case coverage
+
+- UC-01 Browse Public Info (`/`)
+- UC-02 Apply as Student (`/apply/student`)
+- UC-03 Apply as Instructor (`/apply/instructor`)
+- UC-04 Manage Semester Phases (`/registrar/semester`)
+- UC-05 Register Courses (`/student/register`)
+- UC-06 Admit Waitlisted Student (`/instructor/waitlist`)
+- UC-07 Submit Review + taboo moderation (`/student/review`)
+- UC-08 Submit Grades (`/instructor/grades`)
+- UC-09 File/Resolve Complaint (`/complaints`)
+- UC-10 Ask AI Assistant (`/ai`)
+
+## Notes
+
+- The app uses SQLite (`college0.db`) and auto-seeds starter data on first run.
+- The implementation follows the document's role model (Visitor, Student, Instructor, Registrar), semester lifecycle, and disciplinary logic (warnings/suspension).

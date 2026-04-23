@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Student - Submit Review</h1>
+<form method="post" class="card" style="max-width:720px;">
+  <label>Enrollment</label><br>
+  <select name="enrollment_id" required>
+    {% for e in enrollments %}
+      <option value="{{ e['enrollment_id'] }}">{{ e['enrollment_id'] }} - {{ e['course_name'] }}</option>
+    {% endfor %}
+  </select><br><br>
+  <label>Stars</label><br>
+  <input type="number" name="stars" min="1" max="5" value="5" required><br><br>
+  <label>Text</label><br>
+  <textarea name="text" rows="4" cols="70" required></textarea><br><br>
+  <button type="submit">Submit Review</button>
+</form>
+{% endblock %}

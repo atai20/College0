@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Apply as {{ role|capitalize }}</h1>
+<form method="post" class="card" style="max-width:420px;">
+  <label>Email</label><br>
+  <input type="email" name="email" required><br><br>
+  <label>Prior GPA</label><br>
+  <input type="number" step="0.01" min="0" max="4" name="prior_gpa" value="3.00"><br><br>
+  <button type="submit">Submit Application</button>
+</form>
+{% endblock %}
